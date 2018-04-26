@@ -1,0 +1,30 @@
+{
+    "student": [
+        {
+            "name": "admin",
+            "sex": "nan"
+        },
+        {
+            "name": "admin",
+            "sex": "nan"
+        },
+        {
+            "name": "ppp",
+            "sex": "oo"
+        },
+        {
+            "name": "ppp",
+            "sex": "oo"
+        },
+        {
+            "name": "ppp",
+            "sex": "oo"
+        }
+    ],
+    "teacher": [
+        {
+            "name": "t1",
+            "sex": "nan"
+        }
+    ]
+}

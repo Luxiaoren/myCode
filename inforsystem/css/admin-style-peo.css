@@ -1,0 +1,40 @@
+aside a#admin {
+    background: #fff;
+}
+
+aside ul#adminlist {
+    height: 144px;
+
+}
+
+aside ul#adminlist li:nth-child(1) a {
+    background: #6fb3e0;
+}
+
+.margin {
+    width: 1119px;
+    margin: 0 auto;
+
+}
+
+.title {
+    border-bottom: 1px dotted black;
+    font: 16px/32px "";
+    margin-top: 50px;
+    text-indent:10px;
+    position: relative;
+}
+.btn{
+    width:50px;
+    height:25px;
+    font: 16px/25px "";
+    background:#1a98d5;
+    position:absolute;
+    top:5px;
+    right:0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.content{
+
+}

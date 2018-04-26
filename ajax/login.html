@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登陆</title>
+</head>
+<body>
+    <input type="text" id="user"/>
+    <input type="password" id="pass"/>
+    <input type="button" id="sub" value="登录"/>
+</body>
+<script>
+    var ouser=document.getElementById('user');
+    var opass=document.getElementById('pass');
+    var osub=document.getElementById('sub');
+    osub.onclick=function(){
+        var ajax=new XMLHttpRequest();
+        ajax.open("get","fopen.php?user="+ouser.value+"&pass="+opass.value);
+        ajax.send();
+        ajax.onreadystatechange=function(){
+            if(ajax.readyState===4&&ajax.status===200){
+            var res=ajax.responseText;
+            var json=JSON.parse(res);
+           for(key in json){
+               console.log(json[key]);
+           }
+        }
+        }
+        
+    }
+</script>
+</html>

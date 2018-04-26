@@ -1,0 +1,96 @@
+{
+    "logcount": [
+        {
+            "username": "admin",
+            "password": "admin",
+            "counttype": "admin"
+        },
+        {
+            "username": "chenyuan",
+            "password": "123456",
+            "counttype": "student"
+        },
+        {
+            "username": "chenyuanyuan",
+            "password": "1234567",
+            "counttype": "student"
+        },
+        {
+            "username": "teach",
+            "password": "123456",
+            "counttype": "teacher"
+        }
+    ],
+    "basefile": [
+        {
+            "username": "chenyuan",
+            "name": "陈圆",
+            "sex": "女",
+            "ethnic": "汉",
+            "idcard": "341227199305067869",
+            "schoolid": "2014014055",
+            "depa": "信息工程学院",
+            "major": "计算机科学与技术",
+            "class": "1401",
+            "indate": "2014年9月1日",
+            "ways": "普通全日制",
+            "contact":"13132423424",
+            "bir": "1998年8月7号",
+            "collname": "皖西学院",
+            "education": "本科",
+            "years": "4年",
+            "edccat": "普通",
+            "outdate": "2018年7月1日",
+            "status": "在籍（注册学籍）"
+        },
+        {
+            "username": "chenyuanyuan",
+            "name": "陈圆圆",
+            "sex": "女",
+            "ethnic": "汉",
+            "idcard": "341227199305067869",
+            "schoolid": "2014014055",
+            "depa": "信息工程学院",
+            "major": "计算机科学与技术",
+            "class": "1401",
+            "indate": "2014年9月1日",
+            "ways": "普通全日制",
+            "contact":"13132423424",
+            "bir": "1998年8月7号",
+            "collname": "皖西学院",
+            "education": "本科",
+            "years": "4年",
+            "edccat": "普通",
+            "outdate": "2018年7月1日",
+            "status": "在籍（注册学籍）"
+        }
+    ],
+    "student": [
+        {
+            "name": "admin",
+            "sex": "nan"
+        },
+        {
+            "name": "admin",
+            "sex": "nan"
+        },
+        {
+            "name": "ppp",
+            "sex": "oo"
+        },
+        {
+            "name": "ppp",
+            "sex": "oo"
+        },
+        {
+            "name": "ppp",
+            "sex": "oo"
+        }
+    ],
+    "teacher": [
+        {
+            "name": "t1",
+            "sex": "nan"
+        }
+    ]
+}
