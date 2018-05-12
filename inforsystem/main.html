@@ -11,10 +11,10 @@
 <header>
     <a href="">大学信息基础作业管理系统</a>
     <div id="setting">
-        <a href="" id="username">康勇</a>
+        <a href="" id="username"></a>
         <div id="bott">
-            <a href="#">修改密码</a>
-            <a href="#">退出</a>
+            <i href="#">修改密码</i>
+            <i href="#">退出</i>
         </div>
     </div>
 </header>
@@ -58,11 +58,11 @@
             </div>
             <div class="nam"><!--显示姓名栏-->
                 <i></i>
-                <span>康勇</span>
+                <span></span>
                 <span>(男)</span>
             </div>
         </div>
-        <ul>
+        <ul id="list">
             <li><span>姓名</span>
                 <p></p>
             </li>
@@ -125,38 +125,56 @@
 </body>
 <script src="js/common.js"></script>
 <script src="js/style.js"></script>
-<script src="js/json.js"></script>
+<script src="js/model.js"></script>
+<script src="bjs/jquery.js"></script>
+<script src="js/logout.js"></script>
 <script>
 
- var  oa=document.querySelector('#username');
- var op=document.querySelectorAll('li p');
- var username=getCookie("username");
- var counttype=getCookie("countype");
- oa.innerHTML=username;
+    var oa = document.querySelector('#username');
+    var ospan = document.getElementsByClassName("nam")[0];
+    var op = document.querySelectorAll('li p');
+    var username = getCookie("username");
+    var counttype = getCookie("counttype");
+    oa.innerHTML = username;
 
- var ajax=new XMLHttpRequest();
- var url="backend/Process.php?t="+new Date().getTime();
- var method="POST";
- var sendValue="username="+username+"&page=main"+"&counttype="+counttype;
- ajax.open(method,url);
- ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
- ajax.send(sendValue);
- ajax.onreadystatechange=function(){
-     if(ajax.readyState===4&&ajax.status===200){
-            var res=ajax.responseText;
+
+    var ajax = new XMLHttpRequest();
+    var url = "backend/Process.php?t=" + new Date().getTime();
+    var method = "POST";
+    var sendValue = "username=" + username + "&page=main" + "&counttype=" + counttype;
+    ajax.open(method, url);
+    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.send(sendValue);
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState === 4 && ajax.status === 200) {
+            var res = ajax.responseText;
             var json = JSON.parse(res);
             console.log(json);
-            var jsonKey=["name","sex","ethnic","idcard","schoolid","depa","major","class","indate", "ways","contact","bir","collname","education","years","edccat","outdate","status"];
-            for(var i=0;i<11;i++){
-                // console.log(jsonKey[i]);
-                op[i].innerHTML=json[jsonKey[i]];
+            var jsonKey = [];
+            console.log(counttype)
+            if (counttype == "teacher") {
+                jsonKey = ["name", "sex", "birth", "ethnic", "idcard", "schoolname", "education", "teachbook", "teachclass", "teachtime", "zhiwei", "honor", "intime"];
+                var showName = ["姓名", "性别", "出生年月", "民族", "身份证号", "学校名称", "学历", "所教课程", "所教班级", "教学时长", "职位"];
+                var Li=$("ul#list li");
+               for(i=0;i<showName.length;i++){
+                   Li.eq(i).children("span").html(showName[i]);
+                   // console.log(1);
+                   // $("li:eq(1)").html("324234")
+               }
+            } else {
+
+                jsonKey = ["name", "sex", "ethnic", "idcard", "schoolid", "depa", "major", "class", "indate", "ways", "contact", "bir", "collname", "education", "years", "edccat", "outdate", "status"];
             }
+            for (var i = 0; i < 11; i++) {
+                // console.log(jsonKey[i]);
+                op[i].innerHTML = json[jsonKey[i]];
+            }
+            ospan.children[1].innerHTML = json[jsonKey[0]];
+            ospan.children[2].innerHTML = json[jsonKey[1]];
 
 
-     }
- }
-
- 
+        }
+    }
 
 
     // onload=function(){

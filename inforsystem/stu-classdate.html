@@ -14,10 +14,10 @@
 <header>
     <a href="">大学信息基础作业管理系统</a>
     <div id="setting">
-        <a href="">康勇</a>
+        <a href=""></a>
         <div id="bott">
-            <a href="#">修改密码</a>
-            <a href="#">退出</a>
+            <i href="#">修改密码</i>
+            <i href="#">退出</i>
         </div>
     </div>
 </header>
@@ -158,14 +158,22 @@
         </ul>
 
     </div>
+    <div id="limit">
+        <button></button>
+    </div>
 
 </div>
-<div id="hiddenp"></div>
+<div id="hiddenp" class=""></div>
 </body>
 <script src="js/style.js"></script>
+<script src="js/common.js"></script>
+<script src="bjs/jquery.js"></script>
+<script src="js/logout.js"></script>
+
 <script>
     var memspan = document.querySelectorAll('.memcontent li span');
     var hiddenp = document.getElementById('hiddenp');
+    $("#setting a").html(getCookie("username"));
 
     for (var i = 0; i < memspan.length; i++) {
         memspan[i].onmouseover = function (ev) {
@@ -174,7 +182,7 @@
             hiddenp.style.display = 'block';
             hiddenp.style.left = ev.pageX + 10 + "px";
             hiddenp.style.top = ev.pageY + 10 + "px";
-            console.log(ev.pageX, ev.pageX);
+            // console.log(ev.pageX, ev.pageX);
         };
         memspan[i].onmouseout = function (ev) {
             hiddenp.style.display = 'none';
@@ -190,9 +198,69 @@
             this.innerHTML = "折叠";
             oul.style.height = 'auto';
         } else {
-            oul.style.height = '95px';
+            oul.style.height = '91px';
             this.innerHTML = "展开";
         }
     }
+
+    function F() {
+        this.init();
+    }
+
+    F.prototype = {
+        constructor: F,
+        init: function () {
+            url="backend/Process.php";
+            sendValue="page=stuclassdate";
+            this.ajax(url,sendValue).then(function (res){
+                var json = JSON.parse(res);
+                var str="";
+                for(let i=0;i<json.length;i++){
+                    str+=`<li>
+                            <span>${json[i].学号}</span>
+                            <span>${json[i].姓名}</span>
+                            <span>${json[i].性别}</span>
+                            <span>${json[i].民族}</span>
+                            <span>${json[i].身份证号}</span>
+                            <span>${json[i].家庭住址}</span>
+                            <span>${json[i].联系方式}</span>
+                            <span>${json[i].邮箱}</span>
+                            <span>${json[i].备注}</span>
+                            </li>
+                               `
+                $(".memcontent").html(str);
+                }
+                // console.log(res)
+            })
+        },
+        ajax: function (url, sendValue) {
+            var p = new Promise(function (success, failed) {
+                var ajax = new XMLHttpRequest();
+                var method = "POST";
+                ajax.open(method, url);
+                ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                ajax.send(sendValue);
+                ajax.onreadystatechange = function () {
+                    if(ajax.readyState===4&&ajax.status===200){
+                        var res = ajax.responseText;
+
+                        success(res);
+                    }else{
+                        if(ajax.readyState===4&&ajax.status!==200){
+                        failed("ajax链接失败")
+                        }
+                    }
+                }
+            })
+            return p;
+        }
+    }
+    if(getCookie("counttype")==="student"){
+
+new F();
+    }else{
+        $("#limit").show();
+    }
+
 </script>
 </html>

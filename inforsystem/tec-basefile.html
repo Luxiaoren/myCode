@@ -11,10 +11,10 @@
 <header>
     <a href="">大学信息基础作业管理系统</a>
     <div id="setting">
-        <a href="">康勇</a>
+        <a href=""></a>
         <div id="bott">
-            <a href="#">修改密码</a>
-            <a href="#">退出</a>
+            <i href="#">修改密码</i>
+            <i href="#">退出</i>
         </div>
     </div>
 </header>
@@ -25,7 +25,7 @@
     <a href="#" id="stu" onclick="changelist(this,stulist,false);return false;">学生模块</a>
     <ul id="stulist">
         <li><a href="stu-basefile.html">基本资料</a></li>
-        <li><a href="stu-classdate.html" >班级情况</a></li>
+        <li><a href="stu-classdate.html">班级情况</a></li>
         <li><a href="stu-homewok.html">家庭作业</a></li>
         <li><a href="stu-classconf.html">班级通知</a></li>
     </ul>
@@ -45,7 +45,7 @@
 </aside>
 <div id="main">
     <div class="bar">
-    教师 > 基本资料
+        教师 > 基本资料
     </div>
     <div class="container">
         <div class="bf"><!--基本资料显示区域-->
@@ -65,7 +65,7 @@
                         <span>(男)</span>
                     </div>
                 </div>
-                <ul>
+                <ul id="file">
                     <li><span>教师姓名</span>
                         <p></p>
                     </li>
@@ -108,11 +108,162 @@
 
                 </ul>
             </div>
-
-
-</div>
-        <h4></h4>
+        </div>
+        <div id="btnlist" class="margin">
+            <i class="addTips">发布通知</i>
+            <i class="addhomWor">发布作业</i>
+        </div>
+        <div id="addTipArea">
+            <h4>通知发布</h4>
+            <label ><span>通知标题:</span><input type="text" id="tipTitle"></label>
+            <label ><span>通知内容:</span><textarea name="tipCon"  id="tipCon"  cols="30" rows="10"></textarea></label>
+            <p></p>
+            <i class="conAddTip">发布</i>
+            <i class="cencal">取消</i>
+        </div>
+        <div id="addHomArea">
+            <h4>通知发布</h4>
+            <label ><span>题目:</span><input type="text" id="homTitle"></label>
+            <label ><span>教师:</span><input type="text" id="homtec"></label>
+            <label ><span>课程:</span><input type="text" id="homLec"></label>
+            <label ><span>题目简述:</span><textarea name="homCon"  id="homCon"  cols="30" rows="10"></textarea></label>
+            <p></p>
+            <i class="conAddHome">发布</i>
+            <i class="cencal">取消</i>
+        </div>
     </div>
+
+    <div id="limit">
+        <button></button>
+    </div>
+</div>
 </body>
 <script src="js/style.js"></script>
+<script src="js/common.js"></script>
+<script src="js/model.js"></script>
+<script src="bjs/jquery.js"></script>
+<script src="js/logout.js"></script>
+<script>
+
+
+    function F() {
+
+
+        this.init();
+    }
+
+
+    F.prototype = {
+        constructor: F,
+        init: function () {
+            $("#setting>  a").html(getCookie("username"));
+            // console.log("init");
+            var sendValue = "page=tecbasefile&username=" + getCookie("username") + "&t=" + new Date().getTime();
+            var url = "backend/Process.php";
+            this.ajax(url, sendValue).then(function (res) {
+                console.log(223232)
+                var json = JSON.parse(res);
+                // console.log(json.length);
+                var jsonKey = ["name", "sex", "birth", "ethnic", "idcard", "schoolname", "education", "teachbook", "teachclass", "teachtime", "zhiwei", "honor", "intime"];
+                for (var i = 0; i < jsonKey.length; i++) {
+
+                    $("#file li").eq(i).children("p").html(json[jsonKey[i]]).css({
+                        fontSize: "14px",
+                        lineHeight: "30px",
+                        textIndent: "5px",
+                        fontFamily: "微软雅黑"
+                    });
+
+                }
+
+            })
+            this.addEvent();
+        },
+        addEvent:function () {
+            $("#btnlist").on("click","i",function (ev) {
+                if(ev.target.className=="addTips"){
+                    console.log("发布通知");
+                    $("#addTipArea").fadeToggle(50);
+
+
+                }
+                if(ev.target.className=="addhomWor"){
+                    console.log("发布作业");
+                    $("#addHomArea").fadeToggle(50);
+
+                }
+            })
+            $(".conAddTip").click(function () {
+                let d=new Date();
+
+                let tipTitle=$("#tipTitle").val();
+                let tipCon=$("#tipCon").val();
+                let time=""+d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate();
+
+                $.ajax({
+                    url:"backend/Process.php",
+                    type:"post",
+                    data:{
+                        page:"addtip",
+                        time:time,
+                        tipTitle:tipTitle,
+                        tipCon:tipCon
+                    },
+                    success:function (res) {
+                        console.log(res);
+                    }
+                })
+
+
+                console.log(tipCon,tipTitle,time);
+                alert("发布成功");
+                $("#addTipArea").fadeToggle(50);
+
+
+            })
+            $(".conAddHome").click(function () {
+                let d=new Date();
+
+                let homTitle=$("#homTitle").val();
+                let homTech=$("#homtec").val();
+                let homLec=$("#homLec").val();
+                let homCon=$("#homCon").val();
+                let time=""+d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate();
+
+                $.ajax({
+                    url:"backend/Process.php",
+                    type:"post",
+                    data:{
+                        page:"addhom",
+                        time:time,
+                        homTitle:homTitle,
+                        homCon:homCon,
+                        homTech:homTech,
+                        homLec:homLec
+                    },
+                    success:function (res) {
+                        console.log(res);
+                    }
+                })
+
+
+                alert("发布作业成功");
+                $("#addHomArea").fadeToggle(50);
+            })
+            $(".cencal").click(function () {
+                $(this).parent().fadeToggle(50);
+            })
+        }
+    }
+    F.prototype.__proto__ = FN.prototype;
+
+
+
+    if(getCookie("counttype")==="teacher"){
+        new F();
+    }else{
+        $("#limit").show();
+    }
+
+</script>
 </html>

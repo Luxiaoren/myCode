@@ -36,7 +36,7 @@
     var osub = document.getElementById('sub');
     osub.onclick = function () {
         var ajax = new XMLHttpRequest();
-        var url = "backend/Process.php?t=" + new Date().getTime();
+        var url = "backend/datebase.php?t=" + new Date().getTime();
         var method = "POST";
         ajax.open(method, url);
         ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -51,18 +51,22 @@
                     var json = JSON.parse(res);
                     setCookie("username", json["username"], 24 * 60 * 60);
                     setCookie("counttype", json["counttype"]);
+                    if(getCookie("counttype")==="admin"){
+
+                    window.location.href="admin-peo.html";
+                    }else{
                     window.location.href="main.html";
+
+                    }
 
                     // console.log(json);
                 } else {
                     console.log("登录失败");
                     alert("用户名或者密码错误");
                 }
-
-
             }
         }
-        
+
     }
 </script>
 

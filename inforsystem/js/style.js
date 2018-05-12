@@ -72,7 +72,7 @@ function checkid() {
 
 
 function changelist($this, element, flag) {/*改变列表的状态*/
-
+    console.log(1);
     var height = element.style.height;
     console.log(height, flag, '1');
     if ((height === '0px' || height === '') && flag === false) {/*当初始高度为隐藏时高度时设置动画为展开动画*/

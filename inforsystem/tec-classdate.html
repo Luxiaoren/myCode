@@ -11,10 +11,10 @@
 <header>
     <a href="">大学信息基础作业管理系统</a>
     <div id="setting">
-        <a href="">康勇</a>
+        <a href=""></a>
         <div id="bott">
-            <a href="#">修改密码</a>
-            <a href="#">退出</a>
+            <i href="#">修改密码</i>
+            <i href="#">退出</i>
         </div>
     </div>
 </header>
@@ -25,7 +25,7 @@
     <a href="#" id="stu" onclick="changelist(this,stulist,false);return false;">学生模块</a>
     <ul id="stulist">
         <li><a href="stu-basefile.html">基本资料</a></li>
-        <li><a href="stu-classdate.html" >班级情况</a></li>
+        <li><a href="stu-classdate.html">班级情况</a></li>
         <li><a href="stu-homewok.html">家庭作业</a></li>
         <li><a href="stu-classconf.html">班级通知</a></li>
     </ul>
@@ -48,43 +48,434 @@
         教师 > 班级情况
     </div>
     <div id="classList" class="margin">
-        <div class="className">
-            计科1401班
-            <div class="btn">展开</div>
-        </div>
-        <div class="classInfo">
-            <ul class="clear">
-                <li><span>班级名称:</span><p>计算机科学与技术1401班</p></li>
-                <li><span>班级人数:</span><p>60</p></li>
-                <li><span>班&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长:</span><p>李班长</p></li>
-                <li><span>班委成员:</span><p>张三，李四，王二，李五</p></li>
-                <li><span>最近活动:</span><p>无</p></li>
-
-            </ul>
-        </div>
-        <div class="className">
-            计科1401班
-            <div class="btn">展开</div>
-        </div>
-        <div class="classInfo">
-            <ul class="clear">
-                <li><span>班级名称:</span><p>计算机科学与技术1401班</p></li>
-                <li><span>班级人数:</span><p>60</p></li>
-                <li><span>班&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长:</span><p>李班长</p></li>
-                <li><span>班委成员:</span><p>张三，李四，王二，李五</p></li>
-                <li><span>最近活动:</span><p>无</p></li>
-
-            </ul>
-        </div>
-        <div id="addBtn"></div>
+        <!--<div class="className">-->
+        <!--计科1401班-->
+        <!--<div class="btn">展开</div>-->
+        <!--</div>-->
+        <!--<div class="classInfo">-->
+        <!--<h4>基本资料</h4>-->
+        <!--<div class="tips">请完善以下信息,方便我们更好的为您服务</div>-->
+        <!--<h5>基本信息</h5>-->
+        <!--<div class="c1">-->
+        <!--<p><span>班级名称：</span><span class="classname">计科1401</span></p>-->
+        <!--<p><span>所属专业：</span><span>计算机科学与技术</span></p>-->
+        <!--<p><span>所属学院：</span><span>电子信息工程学院</span></p>-->
+        <!--<p><span>人数：</span><span>60</span></p>-->
+        <!--</div>-->
+        <!--<h5>教师信息</h5>-->
+        <!--<div class="c1 teacher isupdate">-->
+        <!--<p><span>张兴泽</span>：<span>辅导员</span></p>-->
+        <!--<p><span>李天</span>：<span>c程序设计</span></p>-->
+        <!--<p><span>张全</span>：<span>操作系统</span></p>-->
+        <!--<p><span>李洋</span>：<span>数据库</span></p>-->
+        <!--<p><span>李浩</span>：<span>编译原理</span></p>-->
+        <!--<p><span>刘翔</span>：<span>java程序设计</span></p>-->
+        <!--<p><span>刘达</span>：<span>java程序设计</span></p>-->
+        <!--</div>-->
+        <!--<h5>班委信息</h5>-->
+        <!--<div class="c1 leader isupdate">-->
+        <!--<p><span>刘郝荣</span>：<span>班长</span></p>-->
+        <!--<p><span>顾正文</span>：<span>副班长</span></p>-->
+        <!--<p><span>李想</span>：<span>团支书</span></p>-->
+        <!--<p><span>李洋</span>：<span>学习委员</span></p>-->
+        <!--<p><span>李昊宇</span>：<span>体育委员</span></p>-->
+        <!--<p><span>刘梅</span>：<span>生活委员</span></p>-->
+        <!--<p><span>刘能</span>：<span>文娱委员</span></p>-->
+        <!--</div>-->
+        <!--<div class="classbtn">-->
+        <!--<button class="save" disabled="disabled">保存</button>-->
+        <!--<button class="update">修改</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="className">-->
+        <!--计科1402班-->
+        <!--<div class="btn">展开</div>-->
+        <!--</div>-->
+        <!--<div class="classInfo">-->
+        <!--<h4>基本资料</h4>-->
+        <!--<div class="tips">请完善以下信息,方便我们更好的为您服务</div>-->
+        <!--<h5>基本信息</h5>-->
+        <!--<div class="c1">-->
+        <!--<p><span>班级名称：</span><span class="classname">计科1402</span></p>-->
+        <!--<p><span>所属专业：</span><span>计算机科学与技术</span></p>-->
+        <!--<p><span>所属学院：</span><span>电子信息工程学院</span></p>-->
+        <!--<p><span>人数：</span><span>60</span></p>-->
+        <!--</div>-->
+        <!--<h5>教师信息</h5>-->
+        <!--<div class="c1 teacher isupdate">-->
+        <!--<p><span>张兴泽</span>：<span>辅导员</span></p>-->
+        <!--<p><span>李天</span>：<span>c程序设计</span></p>-->
+        <!--<p><span>张全</span>：<span>操作系统</span></p>-->
+        <!--<p><span>李洋</span>：<span>数据库</span></p>-->
+        <!--<p><span>李浩</span>：<span>编译原理</span></p>-->
+        <!--<p><span>刘翔</span>：<span>java程序设计</span></p>-->
+        <!--<p><span>刘达</span>：<span>java程序设计</span></p>-->
+        <!--</div>-->
+        <!--<h5>班委信息</h5>-->
+        <!--<div class="c1 leader isupdate">-->
+        <!--<p><span>刘郝荣</span>：<span>班长</span></p>-->
+        <!--<p><span>顾正文</span>：<span>副班长</span></p>-->
+        <!--<p><span>李想</span>：<span>团支书</span></p>-->
+        <!--<p><span>李洋</span>：<span>学习委员</span></p>-->
+        <!--<p><span>李昊宇</span>：<span>体育委员</span></p>-->
+        <!--<p><span>刘梅</span>：<span>生活委员</span></p>-->
+        <!--<p><span>刘能</span>：<span>文娱委员</span></p>-->
+        <!--</div>-->
+        <!--<div class="classbtn">-->
+        <!--<button class="save" disabled="disabled">保存</button>-->
+        <!--<button class="update">修改</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div id="addBtn"></div>-->
     </div>
-
+    <div id="addClass">
+        <h4>基本资料</h4>
+        <div class="tips">请完善以下信息,方便我们更好的为您服务</div>
+        <h5>基本信息</h5>
+        <div class="c1 base">
+            <p><span>班级名称：</span><i><input type="text" id="className" required="required"></i><span></span></p>
+            <p><span>所属专业：</span><i><input type="text" id="major"></i><span></span></p>
+            <p><span>所属学院：</span><i><input type="text" id="depar"></i><span></span></p>
+            <p><span>人数：</span><i><input type="text" id="peoNum"></i><span></span></p>
+        </div>
+        <h5>教师信息</h5>
+        <div class="c1 teacher isupdate">
+            <!--<p><i><input type="text"></i>：<i><input type="text"></i></p>-->
+            <button class="addtech add">添加</button>
+        </div>
+        <h5>班委信息</h5>
+        <div class="c1 leader isupdate">
+            <button class="addleader add">添加</button>
+        </div>
+        <div class="addclassbtn">
+            <button class="addsave">保存</button>
+        </div>
+    </div>
+    <div id="limit">
+        <button></button>
+    </div>
 </div>
+
 </body>
 <script src="js/style.js"></script>
 <script src="js/common.js"></script>
+<script src="bjs/jquery.js"></script>
+<script src="js/logout.js"></script>
 <script>
-    let op=document.querySelectorAll('li p');
+    if (getCookie("counttype") === "teacher") {
+
+    } else {
+        $("#limit").show();
+    }
+
+    function F() {
+        this.init();
+    }
+
+    F.prototype = {
+        constructor: F,
+        init: function () {
+            $("#setting > a").html(getCookie("username"));
+
+
+            var string = "";
+            var data = [];
+            $.ajax({
+                url: "backend/datebase.php",
+                type: "post",
+                data: {
+                    page: "getclass",
+                    user:getCookie("username")
+                },
+                success: function (res) {
+                    data.push(JSON.parse(res));
+                    data = data[0];
+                    // console.log(data);
+                    var str = "";
+                    for (var i = 0; i < data[0].length; i++) {
+                        str += `
+                         <div class="className">
+                            ${data[0][i].班级名称}
+                            <div class="btn">展开</div>
+                        </div>
+                        <div class="classInfo"   data-id="${data[0][i].id}">
+                            <h4>基本资料</h4>
+                            <div class="tips">请完善以下信息,方便我们更好的为您服务</div>
+                            <h5>基本信息</h5>
+                            <div class="c1">
+                                <p><span>班级名称：</span><span class="classname">${data[0][i].班级名称}</span></p>
+                                <p><span>所属专业：</span><span>${data[0][i].所属专业}</span></p>
+                                <p><span>所属学院：</span><span>${data[0][i].所属学院}</span></p>
+                                <p><span>人数：</span><span>${data[0][i].人数}</span></p>
+                            </div>
+                            <h5>教师信息</h5>
+                            <div class="c1 teacher isupdate" >
+                                <!--<p><span>张兴泽</span>：<span>辅导员</span></p>-->
+                                <!--<p><span>李天</span>：<span>c程序设计</span></p>-->
+                                <!--<p><span>张全</span>：<span>操作系统</span></p>-->
+                                <!--<p><span>李洋</span>：<span>数据库</span></p>-->
+                                <!--<p><span>李浩</span>：<span>编译原理</span></p>-->
+                                <!--<p><span>刘翔</span>：<span>java程序设计</span></p>-->
+                                <!--<p><span>刘达</span>：<span>java程序设计</span></p>-->
+                            </div>
+                            <h5>班委信息</h5>
+                            <div class="c1 leader isupdate">
+                                <!--<p><span>刘郝荣</span>：<span>班长</span></p>-->
+                                <!--<p><span>顾正文</span>：<span>副班长</span></p>-->
+                                <!--<p><span>李想</span>：<span>团支书</span></p>-->
+                                <!--<p><span>李洋</span>：<span>学习委员</span></p>-->
+                                <!--<p><span>李昊宇</span>：<span>体育委员</span></p>-->
+                                <!--<p><span>刘梅</span>：<span>生活委员</span></p>-->
+                                <!--<p><span>刘能</span>：<span>文娱委员</span></p>-->
+                            </div>
+                            <div class="classbtn">
+                                <button class="save" disabled="disabled">保存</button>
+                                <button class="update">修改</button>
+                            </div>
+                        </div>
+                                    `
+                    }
+                    str += `<div id="addBtn"></div>`;
+                    $("#classList").html(str);
+
+                    for (var m = 0; m < data[0].length; m++) {
+
+                        var s1 = "";
+                        var s2 = "";
+                        for (var n = 0; n < data[1].length; n++) {
+                            var sid = parseInt(data[1][n].id);
+                            if (sid > ((m + 1) * 100) && sid < ((m + 2) * 100)) {
+                                if (data[1][n].infotype === "教师信息") {
+                                    s1 += `
+                                            <p><span>${data[1][n].name}</span>：<span>${data[1][n].job}</span></p>`;
+                                }
+                                if (data[1][n].infotype === "班委信息") {
+                                    s2 += `<p><span>${data[1][n].name}</span>：<span>${data[1][n].job}</span></p>`;
+                                }
+                            }
+                        }
+                        $(".teacher").eq(m).html(s1);
+                        $(".leader").eq(m).html(s2);
+                    }
+                    $(".btn").click(function () {
+                        $(this).parent().next().slideToggle(100);
+                    })
+                    $("#addBtn").click(function () {
+                        $("#addClass").fadeToggle(50);
+                    })
+                    $(".update").click(function () {
+                        var ospan = $(this).parent().parent().find(".isupdate span");
+                        var l = ospan.length;
+                        for (var i = 0; i < l; i++) {
+                            // console.log($(".isupdate span").eq(i).html())
+                            var input = document.createElement("input")
+                            input.type = "text";
+                            input.value = ospan.eq(i).html();
+
+                            ospan.eq(i).html("");
+                            ospan.eq(i).append(input);
+                        }
+                        // $(".classbtn button").eq(0).addClass("active");
+                        $(this).prev().addClass("active");
+                        $(this).attr("disabled", "disabled");
+                        $(this).prev().removeAttr("disabled");
+                        console.log(l);
+                    })
+                    $(".save").click(function () {
+                        var ospan = $(this).parent().parent().find(".isupdate span");
+                        var l = ospan.length;
+                        for (var i = 0; i < l; i++) {
+                            // console.log(ospan.eq(i).children("input")[0].value);
+                            ospan.eq(i).html(ospan.eq(i).children("input")[0].value);
+                        }
+                        /*将数据存到数组*/
+                        l = ospan.length
+                        var dateArr = "";
+                        for (var j = 0; j < l; j++) {
+                            dateArr += ospan.eq(j).html() + "&";
+                        }
+                        console.log(dateArr);
+                        // console.log(json);
+                        /*ajax发送*/
+                        var that = $(this);
+                        $.ajax({
+                            url: "backend/datebase.php",
+                            type: "post",
+                            data: {
+                                classname: that.parent().parent().find(".classname").html(),
+                                teachnum: that.parent().parent().find(".teacher p").length,
+                                leadernum: that.parent().parent().find(".leader p").length,
+                                page: "save",
+                                update: dateArr
+                            },
+                            success: function (res) {
+                                console.log(res);
+                            }
+                        })
+                        //
+                        // l=$(".teacher span").length;
+                        // ospan=$(".teacher span");
+                        // var darr=new Array();
+                        // for(i=0;i<l;i++){
+                        //     darr.push(ospan)
+                        //     // $.ajax({
+                        //     //     url:"backend/Process.php",
+                        //     //     type:"POST",
+                        //     //     data:{
+                        //     //         page:"savetec",
+                        //     //         classname:$("#classname").html(),
+                        //     //         index:ospan.eq(i).parent().index(),
+                        //     //         key:ospan.eq(i).html(),
+                        //     //         value:ospan.eq(i+1).html()
+                        //     //     },
+                        //     //     dataType:"json",
+                        //     //     success:function (res) {
+                        //     //         console.log(res);
+                        //     //     }
+                        //     // })
+                        // }
+                        //
+                        // var ll=$(".leader span").length;
+                        // var oospan=$(".leader span");
+                        // for(var j=0;j<ll;j+=2){
+                        // console.log(1)
+                        //     $.ajax({
+                        //         url:"backend/Process.php",
+                        //         type:"POST",
+                        //         data:{
+                        //             page:"saveleader",
+                        //             classname:$("#classname").html(),
+                        //             index:oospan.eq(j).parent().index(),
+                        //             key:oospan.eq(j).html(),
+                        //             value:oospan.eq(j+1).html()
+                        //         },
+                        //         dataType:"json",
+                        //         success:function (res) {
+                        //             console.log(res);
+                        //         },
+                        //         error:function () {
+                        //             console.log(213);
+                        //         }
+                        //     })
+                        // }
+                        $(this).removeClass("active").attr("disabled", "disabled");
+                        $(".update").removeAttr("disabled");
+                        console.log("save");
+                    })
+
+                }
+
+            })
+
+            this.addClassFn();
+        },
+        addClassFn: function () {
+            $("#addClass input").focus(function () {
+
+                $("#addClass i").css({
+                    border: "1px solid #cccccc"
+                })
+                $(this).parent().css({
+                    border: "1px solid green"
+                })
+            })
+
+            $(".add").click(function () {
+                var op = $("<p></p>");
+                var i1 = $("<i></i>");
+                var i2 = $("<i></i>");
+                var input1 = $("<input>");
+                input1.attr("placeholder", "教师姓名/学生姓名");
+                var input2 = $("<input>");
+                input2.attr("placeholder", "所教课程/担任职位");
+                var span = $("<span>");
+                span.text(":");
+                span.css({
+                    "text-align": "left",
+                    "width": "10px",
+
+                    "text-indent": "0"
+                })
+                i1.append(input1);
+                i2.append(input2);
+                op.append(i1);
+                op.append(span);
+                op.append(i2);
+                $(this).before(op);
+
+            })
+            $(".base input").blur(function () {
+                if ($(this).val() === "") {
+                    $(this).parent().css({
+                        "border": "1px solid #FF3300"
+                    }).next().html("不能为空");
+                } else {
+                    $(this).parent().next().html("");
+                }
+            })
+            $(".addsave").click(function () {
+                if ($("#className").val() !== "" && $("#major").val() !== "" && $("#depar").val() !== "" && $("#peoNum").val() !== "") {
+                    var num1=0;
+                    var num2=0;
+                    var s1="";
+                    var s2="";
+                    for (var i = 0; i < $(".teacher input").length; i+=2) {
+                        if ($(".teacher input").eq(i).val() !== ""&&$(".teacher input").eq(i+1).val() !== "") {
+                            s1+=$(".teacher input").eq(i).val()+"&"+$(".teacher input").eq(i+1).val()+"&";
+                            num1 += 1;
+                        }
+                    }
+                    for ( i = 0; i < $(".leader input").length; i+=2) {
+                        if ($(".leader input").eq(i).val() !== ""&&$(".leader input").eq(i+1).val() !== "") {
+                            s2+=$(".leader input").eq(i).val()+"&"+$(".leader input").eq(i+1).val()+"&";
+                            num2 += 1;
+                        }
+                    }
+
+                    $.ajax({
+                        url:"backend/datebase.php",
+                        type:"post",
+                        data:{
+                            page:"saveadd",
+                            className:$("#className").val(),
+                            major:$("#major").val(),
+                            depar:$("#depar").val(),
+                            peoNum:$("#peoNum").val(),
+                            teachStr:s1,
+                            teachnum:num1,
+                            leaderStr:s2,
+                            leadernum:num2,
+                            user:getCookie("username")
+                        },
+                        success:function (res) {
+                            console.log(res);
+                            $("#addClass").fadeToggle(50);
+                            window.location.reload();
+
+                        }
+                    })
+                    console.log(s1,num1);
+                    console.log(s2,num2);
+
+
+                } else {
+                    console.log("no");
+                }
+
+
+            })
+
+        }
+    }
+
+    if(getCookie("counttype")==="teacher"){
+        new F();
+    }else{
+        $("#limit").show();
+    }
+
+
+    /*let op=document.querySelectorAll('li p');
     let obtn=document.querySelectorAll('.btn');
     onload=function(){
       for(let i=0;i<op.length;i++){
@@ -133,6 +524,6 @@
             }
 
         }
-    }
+    }*/
 </script>
 </html>

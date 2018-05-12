@@ -11,10 +11,10 @@
 <header>
     <a href="">大学信息基础作业管理系统</a>
     <div id="setting">
-        <a href="">康勇</a>
+        <a href=""></a>
         <div id="bott">
-            <a href="#">修改密码</a>
-            <a href="#">退出</a>
+            <i href="#">修改密码</i>
+            <i href="#">退出</i>
         </div>
     </div>
 </header>
@@ -25,7 +25,7 @@
     <a href="#" id="stu" onclick="changelist(this,stulist,true);return false;">学生模块</a>
     <ul id="stulist">
         <li><a href="stu-basefile.html">基本资料</a></li>
-        <li><a href="stu-classdate.html" >班级情况</a></li>
+        <li><a href="stu-classdate.html">班级情况</a></li>
         <li><a href="">家庭作业</a></li>
         <li><a href="stu-classconf.html">班级通知</a></li>
     </ul>
@@ -46,41 +46,197 @@
 <div id="main">
     <div class="bar">学生 > 作业
     </div>
-    <div class="homework ">
-        <h4>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业</h4>
-        <div class="content">
-            <div>
-                <span>题目:</span>
-                <p>无</p>
-            </div>
-            <div>
-                <span>教师:</span>
-                <p>无</p>
-            </div>
-            <div>
-                <span>课程:</span>
-                <p>无</p>
-            </div>
-            <div>
-                <span>题目描述:</span>
-                <p>是的发撒旦法是 是是敌方阿什顿飞撒点是是敌方阿什顿飞撒点粉阿什顿飞撒点粉阿什顿飞撒旦方式是是敌方阿什顿飞撒点粉阿什顿飞撒点粉阿什顿飞撒旦方式是是敌方阿什顿飞撒点粉阿什顿飞撒点粉阿什顿飞撒旦方式是是敌方阿什顿飞撒点粉阿什顿飞撒点粉阿什顿飞撒旦方式是是敌方阿什顿飞撒点粉阿什顿飞撒点粉阿什顿飞撒旦方式是是敌方阿什顿飞撒点粉阿什顿飞撒点粉阿什顿飞撒旦方式粉阿什顿飞撒点粉阿什顿飞撒旦方式</p>
-            </div>
-        </div>
-        <div class="submit">
-            <h4>作业提交</h4>
-            <label ><span>题目:</span><input type="text"></label>
-            <label ><span>教师:</span><input type="text"></label>
-            <label ><span>课程:</span><input type="text"></label>
-            <textarea name="" id="" cols="30" rows="10">
+    <div class="homework">
+        <h4>作业</h4>
+        <div id="hh">
 
-            </textarea>
         </div>
+
     </div>
-
+    <div id="limit">
+        <button></button>
+    </div>
+    <!--<div class="submit">-->
+    <!--<h4>作业提交</h4>-->
+    <!--<label for="file">-->
+    <!--<input type="file" id="file">-->
+    <!--</label>-->
+    <!--<button id="submit">确认提交</button>-->
+    <!--</div>-->
 </div>
 </body>
-<script src="js/style.js">
+<script src="js/style.js"></script>
+<script src="js/common.js"></script>
+<script src="bjs/jquery.js"></script>
+<script src="js/logout.js"></script>
+<script>
+    function F() {
+        this.init();
+    }
+
+    F.prototype = {
+        constructor: F,
+        init: function () {
+            $("#setting a").html(getCookie("username"));
+            url = "backend/Process.php";
+            sendValue = "page=stuhomework";
+            this.ajax(url, sendValue).then(function (res) {
+                var json = JSON.parse(res);
+                // // console.log(json);
+                //  console.log($(`.content:eq(0)`));
+                var str = "";
 
 
+                for (var i = 0; i < json.length; i++) {
+                    str += `<div class="hWtitle"><span>作业</span> <span>sfsd</span></div>
+                                <div class="content">
+
+                                    <div>
+                                        <span>题目:</span>
+                                        <p>无</p>
+                                    </div>
+                                    <div>
+                                        <span>教师:</span>
+                                        <p>无</p>
+                                    </div>
+                                    <div>
+                                        <span>课程:</span>
+                                        <p>无</p>
+                                    </div>
+                                    <div>
+                                        <span>题目描述:</span>
+                                        <p></p>
+                                    </div>
+                                    <div class="submit">
+                                         <!--<label for="file">-->
+                                             <!--<input type="file" id="file" value="选择">-->
+                                          <!--</label>-->
+                                          <!--<button id="submit">提交</button>-->
+                                        <!--　<div class="file">-->
+                                            <!--<label for="file">文件：</label>-->
+                                            <!--<div class="userdefined-file">-->
+                                            <!--　　<input type="text" name="userdefinedFile" id="userdefinedFile" value="未选择任何文件">-->
+                                            <!--　　<button type="button" class="updFile">上传</button>-->
+                                            <!--</div>-->
+                                            <!--<input type="file" name="file" class="file" >-->
+                                        <!--　</div>-->
+
+                                        <label for="file">
+                                            <span>文件：</span>
+                                            <input type="file" name="file" class="file" >
+                                        </label>
+                                        <input type="text" name="show" class="showFile" for="file" value="未选择文件">
+                                        <button class="upFile">上传</button>
+                                    </div>
+
+                                    </div>
+
+                                </div>`;
+                }
+                $("#hh").html(str);
+                $(".hWtitle").click(function () {
+                    $(this).next().slideToggle(200);
+                })
+
+                var hWNum = 1;
+                while (hWNum <= $(".hWtitle").length) {
+                    $(`.content:eq(${hWNum - 1}) div p`)[0].innerHTML = json[json.length - hWNum].title;
+                    $(`.content:eq(${hWNum - 1})  div p`)[1].innerHTML = json[json.length - hWNum].teacher;
+                    $(`.content:eq(${hWNum - 1})  div p`)[2].innerHTML = json[json.length - hWNum].class;
+                    $(`.content:eq(${hWNum - 1})  div p`)[3].innerHTML = json[json.length - hWNum].intro;
+
+                    $(`.hWtitle:eq(${hWNum - 1}) span:eq(0)`).html(json[json.length - hWNum].class);
+                    $(`.hWtitle:eq(${hWNum - 1}) span:eq(1)`).html(json[json.length - hWNum].time);
+
+                    hWNum += 1;
+                }
+
+            });
+            this.addevent();
+        },
+
+
+        addevent: function () {
+            $(".hWtitle").click(function () {
+                $(this).next().slideToggle(200);
+            })
+
+
+
+            $("#hh").on("click","button",function (ev) {
+                if(ev.target.className==="upFile"){
+                    console.log("上传");
+                    let file=$(this).prev().prev().children("input")[0].files[0];
+                    let form = new FormData();
+                    form.append("file", file);
+                    let ajax = new XMLHttpRequest();
+                    ajax.open("post", "backend/file.php");
+                    ajax.send(form);
+                    ajax.onreadystatechange=function () {
+                        if(ajax.readyState===4&&ajax.status===200){
+                            let res=ajax.response;
+
+                            let d=new Date();
+                            let ds=d.getFullYear()+"-"+(d.getMonth()>9?d.getMonth():"0"+d.getMonth())+"-"+(d.getDate()>9?d.getDate():"0"+d.getDate())+" "+d.getHours()+":"+(d.getMinutes()>9?d.getMinutes():"0"+d.getMinutes())+":"+(d.getSeconds()>9?d.getSeconds():"0"+d.getSeconds());
+                            console.log(ds);
+                            console.log(res);
+                            $.ajax({
+                                url:"backend/datebase.php",
+                                type:"post",
+                                data:{
+                                    page:"savefile",
+                                    user:getCookie("username"),
+                                    uptime:ds,
+                                    filename:res,
+
+                                },
+                                success:function (re) {
+                                    console.log(re);
+                                }
+                            })
+
+
+                        }
+                    }
+
+
+                }
+            })
+            $("#hh").on("change","input",function (ev) {
+                if(ev.target.className=="file"){
+                    console.log($(this).parent().next().val($(this).val()));
+                }
+            })
+        }
+        ,
+        ajax: function (url, sendValue) {
+            var p = new Promise(function (success, failed) {
+                var ajax = new XMLHttpRequest();
+                var method = "POST";
+                ajax.open(method, url);
+                ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                ajax.send(sendValue);
+                ajax.onreadystatechange = function () {
+                    if (ajax.readyState === 4 && ajax.status === 200) {
+                        var res = ajax.responseText;
+
+                        success(res);
+                    } else {
+                        if (ajax.readyState === 4 && ajax.status !== 200) {
+                            failed("ajax链接失败")
+                        }
+                    }
+                }
+            })
+            return p;
+        }
+
+    }
+    if(getCookie("counttype")==="student"){
+
+    new F();
+    }else{
+        $("#limit").show();
+    }
 </script>
 </html>
