@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="dahuiji.css">
+    <title>飞机大战</title>
+    <style>
+        #point {
+            position: absolute;
+            height: 20px;
+            width: 100px;
+            display: none;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="main" id="main">
+    <ul id="options" class="options">
+        <li value="1">困难</li>
+        <li value="2">普通</li>
+        <li value="3">一般</li>
+        <li value="4">简单</li>
+    </ul>
+    <div id="point">分数：0</div>
+</div>
+</body>
+<script>
+    function Engin() {
+        this.main = document.getElementById("main");
+        this.option = document.getElementById("options");
+        this.init();
+    }
+
+    Engin.prototype = {
+        constructor: Engin,
+        init: function () {
+            var opli = this.option.children;
+            console.log(this.option);
+            console.log(opli);
+            var that = this;
+            var bgspeed = 0;
+
+            /*背景运动计时器*/
+            setInterval(() => {
+                this.main.style.backgroundPositionY = bgspeed + "px";
+                bgspeed++;
+            }, 10)
+
+            /*难度按钮添加点击事件*/
+            for (var i = 0; i < opli.length; i++) {
+                opli[i].onclick = function () {
+                    that.hard = this.value;
+                    this.parentNode.remove();
+                    delete this.option;
+                    that.loading();
+                }
+            }
+
+        },
+        loading: function () {
+            /*创建logo*/
+            var logo = creatEle("logo");
+
+            var loadele = creatEle("loading");
+            var loadeleBg = 1;
+            var loadingI = setInterval(() => {
+                loadele.style.backgroundImage = `url(images/loading${loadeleBg}.png)`;
+                // loadeleBg+=1;
+                if (loadeleBg === 4) {
+                    clearInterval(loadingI);
+                    logo.remove();
+                    loadele.remove();
+                    this.start();
+                } else {
+                    loadeleBg += 1;
+                }
+                // console.log(1)
+            }, 500)
+
+        },
+        start: function () {
+
+            myplan.init(this.main);
+            myplan.fire(this.hard);
+            console.log(1)
+
+            myplan.timersm = setInterval(() => {
+                if (Math.random() > 0.5)
+                    new Enemy(this.main, 1);
+            }, 1000)
+            myplan.timermi = setInterval(() => {
+                if (Math.random() > 0.7)
+                    new Enemy(this.main, 2);
+            }, 1500)
+            myplan.timerla = setInterval(() => {
+                if (Math.random() > 0.8)
+                    new Enemy(this.main, 3);
+            }, 3000)
+            // console.log(this.hard);
+        }
+    }
+
+
+    var myplan = {
+        init: function (element) {
+            this.bulletArr = new Array();
+            this.timerArr = new Array();
+            this.opoint = document.getElementById("point");
+            this.opoint.style.display = "block";
+            this.point = 0;
+            this.hp = 10;
+            this.ele = creatEle("my-warplain");
+            // document.onmousemove=(ev)=>{
+            // console.log(this.ele);
+
+            this.ele.style.left = element.offsetWidth / 2 - this.ele.offsetWidth / 2 + "px";
+            this.ele.style.top = element.offsetHeight - this.ele.offsetHeight + "px";
+
+            this.move(element);
+            // }
+        },
+        move: function (element) {
+            document.onmousemove = (ev) => {
+                var l = ev.pageX - element.offsetLeft - this.ele.offsetWidth / 2;
+                var t = ev.pageY - this.ele.offsetHeight / 2;
+                if (l < 0) {
+                    l = 0;
+                }
+                if (t < 0) {
+                    t = 0;
+                }
+                if (l > element.offsetWidth - this.ele.offsetWidth) {
+                    l = element.offsetWidth - this.ele.offsetWidth;
+                }
+                this.ele.style.left = l + "px";
+                this.ele.style.top = t + "px";
+
+            }
+        },
+        fire: function (hard) {
+            var inter;
+            switch (hard) {
+                case 1:
+                    inter = 800;
+                    break;
+                case 2:
+                    inter = 400;
+                    break;
+                case 3:
+                    inter = 200;
+                    break;
+                case 4:
+                    inter = 100;
+                    break;
+            }
+
+            setInterval(() => {
+                this.bulletArr.push(new Bullet());
+            }, inter);
+        },
+        die: function () {
+            for (var i = 0; i < 2500; i++) {
+                clearInterval(i);
+
+            }
+
+            document.onmousemove = null;
+            var ff = 0;
+            var tt = setInterval(() => {
+                console.log(1);
+                ff++
+                if (ff == 5) {
+                    ff = 4;
+                    this.ele.style.backgroundImage = "url(images/me_die" + ff++ + ".png)";
+                    clearInterval(tt);
+                    var res = confirm("已死亡是否重新开始");
+                    if (res) {
+                        window.location.reload();
+                    }
+                }
+                this.ele.style.backgroundImage = "url(images/me_die" + ff++ + ".png)";
+            }, 500)
+        }
+
+    }
+
+    function BulletTwo(){
+        this.init();
+    }
+    BulletTwo.prototype={
+        constructor:BulletTwo,
+        init:function(){
+            this.ele=creatEle("bullet");
+            this.eleTwo=creatEle("bullet");
+            this.ele.style.left=myplan.ele.offsetLeft + myplan.ele.offsetWidth / 2 - this.ele.offsetWidth;
+            this.ele.style.top = myplan.ele.offsetTop - this.ele.offsetHeight + "px";
+            this.eleTwo=myplan.ele.offsetLeft + myplan.ele.offsetWidth / 2 + this.ele.offsetWidth;
+            this.move();
+        },
+        move:function(){
+            var tt = this.ele.offsetTop;
+            this.timer = setInterval(() => {
+                this.ele.style.top = tt + "px";
+                this.eleTwo.style.top = tt + "px";
+                tt -= 5;
+                if (tt <= 0) {
+                    clearInterval(this.timer);
+                    this.die();
+                    this.dieTwo();
+
+                }
+            }, 30)
+        },
+        dieTwo:function(){
+
+        },
+        die:function () {
+            this.ele.className = "bullet_die";
+            setTimeout(() => {
+                this.ele.remove();
+                for (var i = 0; i < myplan.bulletArr.length; i++) {
+                    if (myplan.bulletArr[i] === this) {
+                        myplan.bulletArr.splice(i, 1);
+
+                    }
+                }
+                // console.log(myplan.bulletArr);
+            }, 200)
+
+        }
+    }
+
+    function Bullet() {
+        this.init();
+    }
+
+    Bullet.prototype = {
+        constructor: Bullet,
+        init: function () {
+            this.ele = creatEle("bullet");
+            this.ele.style.left = myplan.ele.offsetLeft + myplan.ele.offsetWidth / 2 - this.ele.offsetWidth / 2 + "px";
+            this.ele.style.top = myplan.ele.offsetTop - this.ele.offsetHeight + "px";
+            this.move();
+        },
+        move: function () {
+            var tt = this.ele.offsetTop;
+            this.timer = setInterval(() => {
+                this.ele.style.top = tt + "px";
+                tt -= 5;
+                if (tt <= 0) {
+                    clearInterval(this.timer);
+                    this.die();
+
+                }
+            }, 30)
+        },
+        die: function () {
+            this.ele.className = "bullet_die";
+            setTimeout(() => {
+                this.ele.remove();
+                for (var i = 0; i < myplan.bulletArr.length; i++) {
+                    if (myplan.bulletArr[i] === this) {
+                        myplan.bulletArr.splice(i, 1);
+
+                    }
+                }
+                // console.log(myplan.bulletArr);
+            }, 200)
+
+        }
+    }
+
+    class Enemy {
+        constructor(main, type) {
+            this.main = main;
+            this.type = type;
+
+            // console.log(2)
+            this.init();
+        };
+
+        init() {
+            switch (this.type) {
+                case 1:
+                    this.speed = 5;
+                    this.hp = 5;
+
+                    this.classN = "enemy-small";
+                    break;
+                case 2:
+                    this.speed = 3;
+                    this.hp = 10;
+                    this.classN = "enemy-middle";
+
+                    break;
+                case 3:
+                    this.speed = 2;
+                    this.hp = 50;
+                    this.classN = "enemy-large";
+
+                    break;
+            }
+            // console.log(1);
+            this.show();
+        };
+
+        show() {
+            this.ele = creatEle(this.classN);
+            var l = Math.random() * (this.main.offsetWidth - this.ele.offsetWidth);
+
+            this.ele.style.left = l + "px";
+            this.ele.style.top = -this.ele.offsetHeight + 30 + "px";
+
+            this.move();
+        };
+
+        move() {
+            this.ele.timer = setInterval(() => {
+                this.ele.style.top = this.ele.offsetTop + this.speed + "px";
+
+                /*检测是否到达最下面*/
+                if (this.ele.offsetTop > this.main.offsetHeight) {
+                    this.die();
+                }
+
+                /*检测与子弹碰撞*/
+                for (var i = 0; i < myplan.bulletArr.length; i++) {
+                    var ele = myplan.bulletArr[i].ele;
+                    if (ele.offsetLeft + ele.offsetWidth > this.ele.offsetLeft) {
+                        if (ele.offsetLeft < this.ele.offsetLeft + this.ele.offsetWidth) {
+                            if (ele.offsetTop <= this.ele.offsetTop + this.ele.offsetHeight) {
+                                if (ele.offsetTop + ele.offsetHeight > this.ele.offsetTop) {
+                                    myplan.bulletArr[i].die();
+                                    this.hp--;
+                                    if (this.hp === 0) {
+                                        this.die();
+                                        this.getPoint();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                /*检测与myplan碰撞*/
+                // this.in=false;
+                if (
+                    (myplan.ele.offsetLeft > this.ele.offsetLeft && myplan.ele.offsetLeft < this.ele.offsetLeft + this.ele.offsetWidth && myplan.ele.offsetTop > this.ele.offsetTop && myplan.ele.offsetTop < this.ele.offsetTop + this.ele.offsetHeight)
+                    ||
+
+                    (myplan.ele.offsetLeft + myplan.ele.offsetWidth < this.ele.offsetWidth + this.ele.offsetLeft && myplan.ele.offsetLeft + myplan.ele.offsetWidth > this.ele.offsetLeft && myplan.ele.offsetTop > this.ele.offsetTop && myplan.ele.offsetTop < this.ele.offsetTop + this.ele.offsetHeight)
+                    ||
+                    (myplan.ele.offsetLeft > this.ele.offsetLeft && myplan.ele.offsetLeft < this.ele.offsetLeft + this.ele.offsetWidth && myplan.ele.offsetTop + myplan.ele.offsetHeight < this.ele.offsetTop + this.ele.offsetHeight && myplan.ele.offsetTop + myplan.ele.offsetHeight > this.ele.offsetTop)
+                    ||
+                    (myplan.ele.offsetLeft + myplan.ele.offsetWidth < this.ele.offsetWidth + this.ele.offsetLeft && myplan.ele.offsetLeft + myplan.ele.offsetWidth > this.ele.offsetLeft && myplan.ele.offsetTop + myplan.ele.offsetHeight < this.ele.offsetTop + this.ele.offsetHeight && myplan.ele.offsetTop + myplan.ele.offsetHeight > this.ele.offsetHeight)) {
+                    if (!this.in) {
+                        this.in = true;
+                        myplan.hp--;
+                    }
+                } else {
+                    this.in = false;
+                }
+
+                if (myplan.hp === 0) {
+                    myplan.die();
+                }
+
+            }, 100)
+        };
+
+        getPoint() {
+            myplan.point += this.type;
+            myplan.opoint.innerHTML = "分数：" + myplan.point;
+            return;
+        }
+
+        die() {
+            clearInterval(this.ele.timer);
+            var num;
+            switch (this.type) {
+                case 1:
+                    num = 2;
+                    break;
+                case 2:
+                    num = 3;
+                    break;
+                case 3:
+                    num = 5;
+                    break;
+            }
+            var ff = 1;
+            this.timer = setInterval(() => {
+                this.ele.style.backgroundImage = `url(images/plane${this.type}_die${ff}.png)`;
+                ff++;
+                if (ff === (num + 1)) {
+                    clearInterval(this.timer);
+                    // ff=1;
+                    this.ele.remove();
+                }
+            }, num * 100)
+            // this.ele.style.backgroundImage=`url(images/plane${this.type}_die2.png)`;
+        }
+    }
+
+    new Engin();
+
+
+
+    /*创建所需要的元素并返回*/
+    function creatEle(classname) {
+        var ele = document.createElement("div");
+        var main = document.getElementById("main");
+        ele.className = classname;
+        main.appendChild(ele);
+        return ele;
+    }
+</script>
+</html>
