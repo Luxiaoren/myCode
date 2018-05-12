@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传测试</title>
+</head>
+<body>
+<input type="file" class="file" id="file" name="file">
+<button id="up">上传</button>
+</body>
+<script>
+    let up = document.getElementById("up");
+    up.onclick = function () {
+        let file = document.getElementById("file").files[0];
+        console.log(file);
+        let form = new FormData();
+        form.append("file", file);
+        let ajax = new XMLHttpRequest();
+        ajax.open("post", "b.php");
+        ajax.send(form);
+        ajax.onreadystatechange=function () {
+            if(ajax.readyState===4&&ajax.status===200){
+                let res=ajax.response;
+                // if(res="新建文本文档.txt"){
+                //     console.log(true);
+                // }
+                console.log(res);
+            }
+        }
+
+
+    };
+
+</script>
+</html>
