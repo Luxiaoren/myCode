@@ -27,16 +27,19 @@ aside ul#teclist li:nth-child(4) a{
     position: absolute;
     right:0;
     top:0;
-    font:15px/25px "";
-    background:#6FB3E0;
+    font:12px/25px "微软雅黑";
+    background:#428bca;
     width:50px;
     height:25px;
-    border-radius:5px;
     color:#fff;
     text-align:center;
     cursor: pointer;
     text-indent: 0px;
+    border:2px solid #428bca;
 
+}
+.btn:hover{
+    background-color: #1b6aaa;
 }
 .hw{
     height:30px;
@@ -65,18 +68,21 @@ aside ul#teclist li:nth-child(4) a{
     position: relative;
 }
 .watch,.download{
-    position:absolute;
-    top:5px;
+    position: absolute;
     right:0;
-    background:#438EB9;
-    border-radius: 5px;
-    height:20px;
-    font:14px/20px "";
-    width:50px;
-    text-align:center;
+    top:0;
+    font:12px/25px "微软雅黑";
+    background:url(../image/i-17.png);
+    width:25px;
+    height:25px;
     color:#fff;
-    cursor:pointer;
+    text-align:center;
+    cursor: pointer;
+    text-indent: 0px;
+
+
 }
+
 .watch{
     right:70px;
 }

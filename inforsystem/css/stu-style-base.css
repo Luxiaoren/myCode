@@ -42,7 +42,7 @@ aside ul:nth-of-type(1) li:nth-child(1) a {
     width: 100px;
     height: 30px;
     background: #428bca;
-    font: 13px/30px "";
+    font: 13px/28px "";
     color: #fff;
     text-align: center;
     margin-right: 23px;
@@ -52,6 +52,8 @@ aside ul:nth-of-type(1) li:nth-child(1) a {
 
 .updateBtn a:hover {
     background: #1b6aaa;
+    color:#fff;
+    text-decoration: none;
 }
 
 .profile { /*主要资料显示部分*/
@@ -143,8 +145,10 @@ aside ul:nth-of-type(1) li:nth-child(1) a {
 }
 
 .profile > ul > li {
+
     display: flex;
     border-bottom: 1px solid #f7fbff;
+
 }
 
 .profile > ul > li > span { /*资料标题...姓名。。专业。。。。身份证号等*/
@@ -157,6 +161,14 @@ aside ul:nth-of-type(1) li:nth-child(1) a {
     padding-right: 10px;
     color: #336199;
 }
+.profile > ul > li> p{
+    font:14px/31px "微软雅黑";
+    text-indent: 8px;
+    text-align: left;
+    margin:0;
+
+}
+
 .mysch{
     width: 1090px;
     margin: 0 auto;

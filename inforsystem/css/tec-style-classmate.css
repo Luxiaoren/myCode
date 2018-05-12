@@ -23,21 +23,23 @@ aside ul#teclist li:nth-child(3) a{
     position: absolute;
     right:0;
     top:0;
-    font:15px/25px "";
-    background:#6FB3E0;
+    font:12px/25px "微软雅黑";
+    background:#428bca;
     width:50px;
     height:25px;
-    border-radius:5px;
     color:#fff;
     text-align:center;
     cursor: pointer;
     text-indent: 0px;
+    border:2px solid #428bca;
 
+}
+.btn:hover{
+    background-color: #1b6aaa;
 }
 .classInfo{
 
-    background:#F2F2F2;
-    /*display: none;*/
+    display: none;
     overflow: hidden;
 }
 .classInfo ul{
@@ -59,6 +61,7 @@ aside ul#teclist li:nth-child(3) a{
     text-indent:10px;
     text-align:left;
     flex:1;
+    height:28px;
     border-left:1px solid gray;
     box-sizing: border-box;
 }
@@ -99,4 +102,63 @@ aside ul#teclist li:nth-child(3) a{
     display: none;
     text-indent: 4px;
     cursor: pointer;
+}
+.addBtn{
+    height:30px;
+    width:50px;
+    background: #428bca;
+    border:3px solid #428bca;
+    font:12px "微软雅黑";
+    cursor: pointer;
+    color:#fff;
+
+}
+.addBtn:hover{
+    background-color: #1b6aaa;
+}
+
+p input{
+    width:90%;
+    height:90%;
+    border:none;
+    margin-left:-10px;
+    outline: none;
+    text-indent:10px;
+}
+.comfirBtn,.updConBtn{
+    height:20px;
+    width:40px;
+    display: block;
+    background-color: #428bca;
+    margin: 3px auto;
+    text-indent: 0;
+    text-align: center;
+    font:12px/20px "微软雅黑";
+    color:#fff;
+    cursor: pointer;
+    border:2px solid #428bca;
+}
+.comfirBtn:hover,.updConBtn:hover{
+    background-color: #1b6aaa;
+}
+.deleteBtn,.updateBtn{
+    display:inline-block;
+    width:20px;
+    height:20px;
+    background-color: #428bca;
+    margin:3px auto;
+    font:12px/20px "微软雅黑";
+    text-indent: 0;
+    text-align: center;
+    cursor: pointer;
+    color:#fff;
+}
+.deleteBtn{
+    margin-left:-10px;
+    margin-right:5px;
+    background: url(../image/i-15.png);
+}
+.updateBtn{
+    background: url(../image/i-16.png);
+
 }

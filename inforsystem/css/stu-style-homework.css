@@ -18,11 +18,13 @@ aside ul:nth-of-type(1) li:nth-child(3) a{
     border-bottom:1px dotted  #e2e2e2;
     text-align: center;
     margin-top:22px;
+    letter-spacing: 40px;
 }
-.homework .content div{
+ .content> div{
     border-bottom:1px solid #f0f0f0;
     width:600px;
-    margin:0 auto;
+    /*margin:0 auto;*/
+    margin-left:10%;
     text-indent: 20px;
     display: flex;
 }
@@ -36,38 +38,114 @@ aside ul:nth-of-type(1) li:nth-child(3) a{
     font:14px/28px "";
     text-indent: 0;
 }
-.submit{
-    margin-top:50px;
+.hWtitle{
+    font :16px/32px "微软雅黑";
+    border-bottom: 3px solid #6FB3E0;
+    width:80%;
+    text-indent:20px;
+    margin:0 auto;
+    margin-top:30px;
+    display:flex;
+    justify-content: space-between;
+    cursor:pointer;
+    box-sizing: border-box;
+    padding-right:10px;
+}
+.content{
+    display:none;
+    position: relative;
+}
+
+div.submit {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    /*margin-left:350px;*/
+    height:100px;
+    width:400px;
+    border-bottom:none;
+    position: relative;
 }
-.submit > h4{
-    font:24px/42px "";
-    color:#393f4b;
-    border-bottom:1px dotted  #e2e2e2;
-    text-align: center;
-    margin-top:22px;
-    width:100%;
+div.submit label{
+    display: inline-block;
+    width:250px!important;
+
 }
-.submit label{
-    width:50%;
-    margin-top:30px;
-    height:40px;
-    display: flex;
+.submit input[type=file]{
+    /*display: none;*/
+    position: absolute;
+    left:100px;
+    opacity: 0;
+    width:150px;
+    height:30px;
+
+
 }
-.submit textarea{
-    width:100%;
-    margin-top:30px;
-    height:800px;
-    padding:0 10px;
-    font:14px/20px "";
+.submit input[type=text]{
+    border:1px solid gray;
+    position: absolute;
+    z-index: -1;
+    left:100px;
+    height:30px;
 }
-.submit label span{
+.submit button{
+    height:35px;
     width:100px;
-    font:20px/40px "";
+
 }
-.submit label input{
-    width:100%;
-    height:100%;
-}
+/*.submit label{*/
+    /*height:50px;*/
+    /*background:#438EB9;*/
+    /*width:50px;*/
+
+    /*border-radius:5px;*/
+    /*cursor:pointer;*/
+    /*position:relative;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+
+/*}*/
+/*.submit label:before{*/
+    /*content: '';*/
+    /*display:block;*/
+    /*position:absolute;*/
+    /*height:4px;*/
+    /*width:30px;*/
+    /*background:#fff;*/
+
+/*}*/
+/*.submit label:after{*/
+    /*content: '';*/
+    /*display:block;*/
+    /*position:absolute;*/
+    /*height:30px;*/
+    /*width:4px;*/
+    /*background:#fff;*/
+
+
+/*}*/
+/*.submit label input{*/
+    /*!*display:none;*!*/
+    /*height:30px;*/
+    /*!*opacity: 0;*!*/
+    /*width:200px;*/
+    /*display: inline-block;*/
+    /*margin-left:200px;*/
+    /*margin-top:20px;*/
+/*}*/
+/*.submit button{*/
+    /*box-sizing: border-box;*/
+    /*height:30px;*/
+    /*width:60px;*/
+    /*display: block;*/
+    /*background:#428BCA;*/
+    /*cursor:pointer;*/
+    /*color:#fff;*/
+    /*border:3px solid #428BCA;*/
+    /*margin-top:10px;*/
+/*}*/
+/*.submit button:hover{*/
+    /*background:#1B6AAA;*/
+/*}*/
+
+

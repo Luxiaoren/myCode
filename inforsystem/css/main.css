@@ -107,6 +107,7 @@
 .profile  > ul > li{
     display: flex;
     border-bottom: 1px solid #f7fbff;
+    text-align: center;
 }
 
 .profile  > ul > li > span{ /*资料标题...姓名。。专业。。。。身份证号等*/
@@ -121,8 +122,10 @@
 }
 .profile  > ul > li > p{
     font:14px/31px "";
-    text-align:left;
     text-indent: 8px;
+    text-align: left;
+    display:inline-block;
+
 
 
 }

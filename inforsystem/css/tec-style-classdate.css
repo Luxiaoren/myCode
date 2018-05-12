@@ -14,31 +14,129 @@ aside ul#teclist li:nth-child(2) a{
 }
 .className{
     font:16px/32px "";
-    border-bottom:1px dotted black;
+    border-bottom:1px dotted gray;
     margin-top:50px;
     text-indent: 10px;
     position: relative;
 }
+
 .btn{
     position: absolute;
     right:0;
     top:0;
-    font:15px/25px "";
+    font:13px/21px "";
     background:#6FB3E0;
     width:50px;
     height:25px;
-    border-radius:5px;
     color:#fff;
     text-align:center;
     cursor: pointer;
     text-indent: 0px;
+    box-sizing: border-box;
+    border:2px solid #6FB3E0
 
 }
+.btn:hover{
+    background:#1b6aaa;
+}
 .classInfo{
-    height:300px;
-    background:#F2F2F2;
+
+    background:#fff;
     display: none;
     overflow: hidden;
+    width:80%;
+    margin-left:50px;
+}
+.classInfo >h4{
+    font:14px "微软雅黑";
+    border-left:2px solid #88B7E0;
+    text-indent: 5px;
+    margin: 30px 0;
+    color:#333;
+}
+.classInfo >h5{
+    font:14px "微软雅黑";
+    text-indent: 5px;
+    margin: 20px 0;
+    color:#333;
+}
+.c1 span:nth-child(1){
+    font:12px/50px "微软雅黑";
+    color:#666;
+    display:inline-block;
+    text-align: right;
+    width:100px;
+
+}
+.isupdate input{
+    box-sizing: border-box;
+    height:32px;
+    border:1px solid #ccc;
+    position: relative;
+
+}
+.isupdate input:before{
+    content:"rfgfdg";
+    position: absolute;
+    height:100px;
+    width:100px;
+    border-top:10px solid #000;
+    display: block;
+    top:-10px;
+    background: red;
+}
+.c1 span:nth-child(1) input {
+    width:100px;
+}
+.c1 span:nth-child(2) {
+    font:12px/50px "微软雅黑";
+    color:#333;
+    display:inline-block;
+    text-indent:10px;
+}
+
+.tips{
+    height:41px;
+    box-sizing: border-box;
+    background:#f9f9f9;
+    border:1px solid #ddd;
+    border-top:2px solid #ddd;
+    font:13px/39px "微软雅黑";
+    text-indent:10px;
+    color:#555;
+}
+.classbtn{
+    box-sizing: border-box;
+    padding:20px 60px ;
+ }
+.classbtn button{
+    width:58px;
+    height:32px;
+    box-sizing: border-box;
+    background: #428bca;
+    border:3px solid #428bca;
+    color:#fff;
+    font:14px "微软雅黑";
+    cursor: pointer;
+    outline: none;
+
+}
+button.save{
+    background:#cccccc;
+    border:none;
+
+}
+button.active{
+    background: #428bca;
+    border:3px solid #428bca;
+}
+button.active:hover{
+    background: #1b6aaa;
+
+}
+.classbtn button:nth-child(2):hover{
+    background: #1b6aaa;
+
 }
 .classInfo ul{
 
@@ -49,7 +147,7 @@ aside ul#teclist li:nth-child(2) a{
     margin-top:20px;
 }
 .classInfo ul li span{
-    font:700 16px/28px "";
+    font:700 14px/28px "";
     text-indent:10px;
     display:block;
     width:100px;
@@ -75,5 +173,86 @@ aside ul#teclist li:nth-child(2) a{
     cursor: pointer;
 }
 #addBtn:hover{
-    background-color:#F5F5F5 ;
+    background-color:#6FB3E0 ;
+}
+#addClass{
+    position: absolute;
+    display:none;
+    width:85%;
+    background: #fff;
+    top:40px;
+    box-sizing: border-box;
+    padding-left:20px;
+}
+#addClass >h4{
+    font:14px "微软雅黑";
+    border-left:2px solid #88B7E0;
+    text-indent: 5px;
+    margin: 30px 0;
+    color:#333;
+}
+#addClass >h5{
+    font:14px "微软雅黑";
+    text-indent: 5px;
+    margin: 20px 0;
+    color:#333;
+}
+#addClass i{
+    height:32px;
+    box-sizing: border-box;
+    border:1px solid #cccccc;
+    width:343px;
+    display: inline-block;
+}
+#addClass input{
+    height:30px;
+    box-sizing: border-box;
+    border:none;
+    border-top:1px solid #f0f0f0;
+    width:100%;
+    outline: none;
+    font:12px "微软雅黑";
+    color:#555;
+
+}
+.addtech,.addleader{
+    width:50px;
+    height:30px;
+    box-sizing: border-box;
+    background: #428bca;
+    border:3px solid #428bca;
+    color:#fff;
+    font:14px "微软雅黑";
+    cursor: pointer;
+    outline: none;
+}
+.addtech:hover,.addleader:hover{
+    background: #1b6aaa;
+}
+.addtech p {
+    display: flex;
+}
+#addClass p i:nth-child(1){
+    width:110px ;
+}
+.addsave{
+    width:100px;
+    height:40px;
+    background: #428bca;
+    border:3px solid #428bca;
+    color:#fff;
+    margin:30px 0;
+    cursor:pointer;
+}
+.addsave:hover{
+    background:#1b6aaa;
+}
+.error{
+    color:#FF3300;
+}
+.error i{
+    border:1px solid #FF3300 ;
+}
+span{
+    font-family: "微软雅黑";
 }

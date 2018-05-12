@@ -21,20 +21,86 @@ aside ul#adminlist li:nth-child(1) a {
     border-bottom: 1px dotted black;
     font: 16px/32px "";
     margin-top: 50px;
-    text-indent:10px;
+    text-indent: 10px;
     position: relative;
 }
-.btn{
-    width:50px;
-    height:25px;
-    font: 16px/25px "";
-    background:#1a98d5;
-    position:absolute;
-    top:5px;
-    right:0;
-    border-radius: 5px;
+
+.btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font: 12px/10px "微软雅黑";
+    background: #428bca;
+    width: 50px;
+    height: 25px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    text-indent: 0px;
+    border: 2px solid #428bca;
+
+}
+
+.btn:hover {
+    background-color: #1b6aaa;
+}
+
+.content {
+    width: 100%;
+}
+
+.content ul {
+
+}
+
+.content ul li {
+    display: flex;
+    font: 13px/28px "微软雅黑";
+    text-indent: 10px;
+
+}
+
+.content ul li.title {
+    display: flex;
+    border-bottom: 1px solid #DDDDDD;
+    font: 14px/28px "微软雅黑";
+    background: #F2F2F2;
+}
+
+li p {
+    flex: 1;
+    border: 1px solid #DDDDDD;
+}
+
+.delcount, .updcount {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-top: 5px;
     cursor: pointer;
 }
-.content{
 
+.delcount {
+    background: url(../image/i-15.png);
+    margin-right: 20px;
+}
+
+.updcount {
+    background: url(../image/i-16.png);
+
+}
+
+.confir {
+    width: 100px;
+    height: 30px;
+    background:#428bca;
+    border-radius: 5px;
+    font:14px/30px "微软雅黑";
+    cursor: pointer;
+    color:#fff;
+    text-align: center;
+
+}
+.modal{
+    font-family: "微软雅黑";
 }

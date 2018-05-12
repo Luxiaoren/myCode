@@ -1,4 +1,7 @@
+aside{
+}
 aside a#stu {
+
     background: #fff;
 }
 
@@ -6,7 +9,8 @@ aside ul#stulist {
     height: 144px;
 
 }
-
+html,body{
+}
 aside ul:nth-of-type(1) li:nth-child(4) a {
     background: #6fb3e0;
 }
@@ -33,39 +37,40 @@ aside ul:nth-of-type(1) li:nth-child(4) a {
     border:0px solid black;
 }
 .confContent ul li{
-    background:#EDF3F4;
     display: flex;
     height: 40px;
     margin-bottom:10px;
     overflow: hidden;
     position:relative;
     transition:  height .5s linear ;
+    box-shadow: 2px 2px 5px 1px ;
+    justify-content: space-between;
+    cursor: pointer;
 
+}
+.confContent ul li:hover{
+    transform: translate(5px,5px);
 }
 .confContent ul li p{
     flex:1;
-    text-indent: 20px;
     height:40px;
-    transition:  text-indent .5s linear ;
+    font: 14px/40px "";
+    text-indent: 10px;
+    /*transition:  text-indent .5s linear ;*/
 }
 .confContent ul li span {
-    width: 60px;
+    width: 100px;
     height: 40px;
-    background:  url(../image/i-10.png) no-repeat center ;
-    background-size:40%;
-    text-align: center;
-    font: 15px/30px "";
-    cursor: pointer;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    color:#fff;
+    text-align: left;
+    font: 13px/40px "";
+    color:#666;
+
 }
 .confContent ul li div{
     position: absolute;
     top:40px;
-    padding:0 200px 0 100px;
+    padding:0 200px 0 50px;
     line-height:20px;
-
+    color:#3c3c3c;
 
 }

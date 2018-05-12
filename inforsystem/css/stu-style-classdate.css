@@ -133,7 +133,7 @@ ul.memtitle li:nth-child(6){
 }
 ul.memcontent{
     overflow: hidden;
-    height:95px;
+    height:91px;
 }
 ul.memcontent li{
     display: flex;
@@ -147,12 +147,23 @@ ul.memcontent li span{
     white-space: nowrap;
     overflow: hidden;
 }
-ul.memcontent li span:nth-child(5){
+ul.memcontent li span:nth-child(5),ul.memtitle li:nth-child(5){
     flex-basis: 100px;
 
 }
-ul.memcontent li span:nth-child(6){
-    flex-basis: 150px;
+ul.memcontent li span:nth-child(6),ul.memtitle li:nth-child(6){
+    flex-basis: 250px;
 
 
 }
+ul.memcontent li span:nth-child(7),ul.memtitle li:nth-child(7){
+    flex-basis: 80px;
+}
+
+ul.memcontent li span:nth-child(8),ul.memtitle li:nth-child(8){
+    flex-basis: 80px;
+}
+ul.memcontent li span:nth-child(1),ul.memtitle li:nth-child(1){
+    flex-basis: 50px;
+}
+

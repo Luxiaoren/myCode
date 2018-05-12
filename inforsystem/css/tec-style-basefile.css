@@ -27,7 +27,7 @@ aside ul#teclist li:nth-child(1) a{
     width: 100px;
     height: 30px;
     background: #428bca;
-    font: 13px/30px "";
+    font: 13px/26px "";
     color: #fff;
     text-align: center;
     margin-right: 23px;
@@ -40,7 +40,7 @@ aside ul#teclist li:nth-child(1) a{
 }
 
 .profile { /*主要资料显示部分*/
-    height:600px;
+    height:435px;
     width: 1090px;
     margin: 0 auto;
     border: 0px solid black;
@@ -141,4 +141,93 @@ aside ul#teclist li:nth-child(1) a{
     box-sizing: border-box;
     padding-right: 10px;
     color: #336199;
+}
+#btnlist{
+    height:50px;
+    border:0px solid black;
+    width: 1090px;
+    margin:0 auto;
+    display: flex;
+    align-items: center;
+}
+.addTips,.addhomWor{
+    height:40px;
+    width:100px;
+    background:#428bca;
+    border:3px solid #428bca;
+    font:14px/34px "微软雅黑";
+    text-align: center;
+    box-sizing: border-box;
+    margin:0 20px;
+    color:#fff;
+    cursor: pointer;
+}
+.container{
+    position: relative;
+}
+.addTips:hover,.addhomWor:hover{
+    background: #1b6aaa;
+}
+#addTipArea,#addHomArea{
+    height:600px;
+    width:100%;
+    background:#fff;
+    border:1px solid black;
+    position: absolute;
+    top:0;
+    display:none;
+
+}
+#addTipArea{
+
+}
+#addTipArea > h4,#addHomArea>h4{
+    font:14px "微软雅黑";
+    border-left:3px solid #88B7E0;
+    width:300px;
+    margin:40px 10px;
+    text-indent: 5px;
+}
+#addTipArea >label,#addHomArea>label{
+    display: block;
+    font:13px "微软雅黑";
+    margin:20px 20px;
+}
+#addTipArea >label textarea,#addHomArea>label textarea{
+    vertical-align: top;
+    font:13px "微软雅黑";
+    width:800px;
+    margin-left:10px;
+}
+#addTipArea >label input,#addHomArea>label input{
+    height:30px;
+    width:800px;
+    margin-left:10px;
+
+}
+#addTipArea > i,#addHomArea>i{
+    display: inline-block;
+    height:40px;
+    width:100px;
+    background:#428bca;
+    border:3px solid #428bca;
+    font:14px/34px "微软雅黑";
+    text-align: center;
+    box-sizing: border-box;
+    margin:0 20px;
+    color:#fff;
+    cursor: pointer;
+}
+#addTipArea > i:hover,#addHomArea>i:hover{
+    background: #1b6aaa;
+}
+
+#addHomArea{
+    display:none;
+}
+#addHomArea>label>span{
+    width:60px;
+    text-align: right;
+    display: inline-block;
+
 }

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/public.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/admin-style-peo.css"/>
@@ -11,16 +12,16 @@
 <header>
     <a href="">大学信息基础作业管理系统</a>
     <div id="setting">
-        <a href="">康勇</a>
+        <a href=""></a>
         <div id="bott">
-            <a href="#">修改密码</a>
-            <a href="#">退出</a>
+            <i href="#">修改密码</i>
+            <i href="#">退出</i>
         </div>
     </div>
 </header>
 <aside>
     <div class="home">
-        <a href="main.html" class="top"><img src="image/i-2.png" alt=""></a>
+        <a href="admin-peo.html" class="top"><img src="image/i-2.png" alt=""></a>
     </div>
     <a href="#" id="stu" onclick="changelist(this,stulist,false);return false;">学生模块</a>
     <ul id="stulist">
@@ -50,15 +51,164 @@
     <div id="proinfo" class="margin">
         <div class="title">
             人员信息
-            <div class="btn">
-                展开
-            </div>
+            <i class="btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                添加
+            </i>
         </div>
         <div class="content">
+            <ul id="list">
+                <li class="title">
+                    <p>序号</p>
+                    <p>用户名</p>
+                    <p>密码</p>
+                    <p>账户类型</p>
+                    <p>操作</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="limit">
+        <button></button>
+    </div>
+</div>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">添加账户</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">用户名:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">密码:</label>
+                        <input type="text" class="form-control" id="recipient-name2">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">账户类型:</label>
+                        <input type="text" class="form-control" id="recipient-name3" placeholder="student/teacher/admin">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <i  data-dismiss="modal" class="confir">确认</i>
+
+            </div>
         </div>
     </div>
 </div>
 </body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="bjs/jquery.js"></script>
+<script src="js/common.js"></script>
 <script src="js/style.js"></script>
-</html>
+<script src="js/logout.js"></script>
+<script>
+    function F() {
+        this.init();
+    }
+    F.prototype={
+        constructor:F,
+        init:function () {
+            $("#setting >a ").html(getCookie("username"));
+
+            $.ajax({
+                url:"backend/datebase.php",
+                type:"post",
+                data:{
+                    page:"getadmin"
+
+                },
+                dataType:"json",
+                success:function (res) {
+                    console.log(res);
+                    let str="";
+                    for(let i=0;i<res.length;i++){
+                        str+=`
+                                    <li >
+                                        <p>${res[i].id}</p>
+                                        <p>${res[i].username}</p>
+                                        <p>*********</p>
+                                        <p>${res[i].counttype}</p>
+                                        <p>
+                                            <i class="delcount"></i>
+                                            <i class="updcount"></i>
+                                        </p>
+                                    </li>`;
+                    }
+                    $(".content ul").append(str);
+
+
+                }
+            })
+            this.addevent();
+        }
+        ,
+        addevent:function () {
+            $("#proinfo").on("click","i",function (ev) {
+                if(ev.target.className=="btn"){
+                    $("#recipient-name").val("");
+                    $("#recipient-name2").val("");
+                    $("#recipient-name3").val("");
+                }
+                if(ev.target.className=="delcount"){
+                    let fl=confirm("是否确定删除该账户？");
+                    delid=$(this).parent().siblings().eq(0).html();
+                    console.log(delid);
+                    if(fl){
+                        $.ajax({
+                            url:"backend/datebase.php",
+                            type:"post",
+                            data:{
+                                page:"delcount",
+                                delid:delid
+                            },
+                            success:function (res) {
+                                console.log(res);
+                            }
+                        })
+                        $(this).parent().parent().remove();
+
+                    }
+                }
+            })
+            $(".confir").click(function () {
+                $.ajax({
+                    url:"backend/datebase.php",
+                    type:"post",
+                    data:{
+                        page:"addcount",
+                        user:$("#recipient-name").val(),
+                        pass:$("#recipient-name2").val(),
+                        count:$("#recipient-name3").val(),
+                    },
+                    success:function (res) {
+                        if(res==="true"){
+                            alert("添加成功");
+                        }
+                        console.log(res);
+                    }
+
+                })
+            })
+        }
+    };
+    
+    
+    if(getCookie("username")==="admin"){
+        new F();
+    }else{
+        $("#limit").show();
+    }
+
+</script>
+</html>                  
