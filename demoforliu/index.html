@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="libs/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>信息检索</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        html, body {
+
+        }
+
+        .w-1240 {
+            width: 1440px;
+        }
+
+        .h-250 {
+            height: 100px;
+        }
+
+        ul li {
+            margin-bottom: 20px;
+            margin-top: 10px;
+            box-shadow: 3px 3px 3px 1px gray;
+            text-indent: 5px;
+            transition: all .1s linear;
+            cursor: pointer;
+            width: 100%;
+
+        }
+
+        ul li:hover {
+            transform: translate(10px, 10px);
+
+        }
+
+        ul li p {
+            width: 80%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        ul li h4 {
+            color: #007ACC;
+            cursor: pointer;
+        }
+
+        ul li h5 {
+            text-indent: 10px;
+        }
+
+        ul li h5 span {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        ul li p {
+            text-indent: 10px;
+            font-size: 18px;
+        }
+
+        /*div.container{*/
+        /*width:2500px !important;*/
+        /*}*/
+    </style>
+</head>
+
+<body>
+<div class="container ">
+    <div class="row  d-flex justify-content-center h-250 align-items-center border">
+
+        <input type="text" class="rounded-0 h-50 form-control col-6 border-right-0 rounded-left" id="searchcon">
+        <button class="btn-success border-0 h-50 col-2 border-left-0" id="search">搜索</button>
+    </div>
+    <ul class="row flex-column w-100" id="content">
+
+    </ul>
+</div>
+<!-- Modal -->
+<div class="modal fade " id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body " id="cbody">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    var flag = false;
+    var ajax = new XMLHttpRequest();
+    var url = "date/date.php?t=" + new Date().getTime();
+    var sendValue = "flag=index";
+    var method = "POST";
+    ajax.open(method, url);
+    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.send(sendValue);
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState === 4 && ajax.status) {
+            var res = ajax.responseText;
+            var json = JSON.parse(res);
+            // console.log(json);
+            var ocontent = document.getElementById('content');
+            var str = "";
+            for (var i = 0; i < json.length; i++) {
+                for (var j = 0; j < json[i].length; j++) {
+                    // console.log(json[i][j])
+                    str += `<li data-i="${i}" data-j=${j} class="" data-toggle="modal" data-target="#exampleModalLong">
+                            <h4 data-i="${i}" data-j=${j}>${json[i][j].title}</h4>
+                            <h5 data-i="${i}" data-j=${j}><span data-i="${i}" data-j=${j}>${json[i][j].author}</span data-i="${i}" data-j=${j}><span>${json[i][j].time}</span></h5>
+                            <p data-i="${i}" data-j=${j}>${json[i][j].article}</p>
+                        </li>
+                      `;
+                }
+
+            }
+            ocontent.innerHTML = str;
+            oli = ocontent.children;
+            ocontent.onclick = function (ev) {
+                ev = ev || window.event;
+                var i = ev.target.getAttribute("data-i");
+                var j = ev.target.getAttribute("data-j");
+                var ocbody = document.querySelector("#cbody");
+                str = "";
+                str += `<li>
+                            <h4>${json[i][j].title}</h4>
+                            <h5 ><span >${json[i][j].author}</span><span>${json[i][j].time}</span></h5>
+                            <p style="font-size:18px;">${json[i][j].article}</p>
+                        </li>
+                      `;
+                ocbody.innerHTML = str;
+
+            }
+
+        }
+    }
+    var osearch = document.querySelector("#search");
+    osearch.onclick = function () {
+        console.log(1);
+        var ocon = document.querySelector("#searchcon");
+        var value = ocon.value;
+        var flag = false;
+        var ajax = new XMLHttpRequest();
+        var url = "date/date.php?t=" + new Date().getTime();
+        var sendValue = "flag=search&name=" + value;
+        var method = "POST";
+        ajax.open(method, url);
+        ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajax.send(sendValue);
+        ajax.onreadystatechange = function () {
+            if (ajax.readyState === 4 && ajax.status) {
+                var res = ajax.responseText;
+                var str;
+                var ocontent = document.getElementById('content');
+                if(!res){
+                    str="对不起，没有查询到相关内容";
+                }else{
+                    var json = JSON.parse(res);
+                    console.log(json);
+                     str = "";
+                    for (var i = 0; i < json.length; i++) {
+
+                        // console.log(json[i][j])
+                        str += `<li data-i="${i}"  class="" data-toggle="modal" data-target="#exampleModalLong">
+                            <h4 data-i="${i}" >${json[i].title}</h4>
+                            <h5 data-i="${i}" ><span data-i="${i}">${json[i].author}</span data-i="${i}" ><span>${json[i].time}</span></h5>
+                            <p data-i="${i}" >${json[i].article}</p>
+                        </li>
+                      `;
+
+
+                    }
+                }
+
+                ocontent.innerHTML = "";
+                ocontent.innerHTML = str;
+                console.log(str);
+                oli = ocontent.children;
+                ocontent.onclick = function (ev) {
+                    ev = ev || window.event;
+                    var i = ev.target.getAttribute("data-i");
+                    var j = ev.target.getAttribute("data-j");
+                    var ocbody = document.querySelector("#cbody");
+                    str = "";
+                    str += `<li>
+                            <h4>${json[i].title}</h4>
+                            <h5 ><span >${json[i].author}</span><span>${json[i].time}</span></h5>
+                            <p style="font-size:18px;">${json[i].article}</p>
+                        </li>
+                      `;
+                    ocbody.innerHTML = str;
+
+                }
+
+            }
+        }
+    }
+
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</html>
